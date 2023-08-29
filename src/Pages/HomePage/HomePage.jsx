@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { fetchPopularFIlms } from '../../components/service/service';
 import { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import {
+  FilmList,
+  FilmLink,
+  FilmItem,
+  FilmImg,
+  FilmTitle,
+} from './HomePage.styled';
 
 const HomePage = () => {
   const [films, setFilms] = useState([]);
@@ -17,17 +25,19 @@ const HomePage = () => {
     <div>
       <Toaster />
       <h1>Trending Today</h1>
-      <ul>
-        {films.map(film => (
-          <li key={film.id}>
-            <h2>{film.title}</h2>
-            <img
-              src={`https://image.tmdb.org/t/p/w300${film.poster_path}`}
-              alt={film.title}
-            />
-          </li>
+      <FilmList>
+        {films.map(({ id, title, poster_path }) => (
+          <FilmLink key={id} to={`/movies/${id}`}>
+            <FilmItem>
+              <FilmImg
+                src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                alt={title}
+              />
+              <FilmTitle>{title}</FilmTitle>
+            </FilmItem>
+          </FilmLink>
         ))}
-      </ul>
+      </FilmList>
     </div>
   );
 };
