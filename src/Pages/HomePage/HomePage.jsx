@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchPopularFIlms } from '../../components/service/service';
 import { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 import {
   FilmList,
   FilmLink,
