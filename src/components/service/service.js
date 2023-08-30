@@ -14,3 +14,16 @@ export const fetchPopularFIlms = async () => {
     toast.error(`Sorry! Something went wrong! Please try refreshing the page!`);
   }
 };
+
+export const fetchFilmByQuery = async query => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+    );
+    return response.data.results;
+  } catch (error) {
+    toast.error(
+      `Sorry! We couldn't find any movies according to your request! Please, enter other movie name!`
+    );
+  }
+};

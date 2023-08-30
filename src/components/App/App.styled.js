@@ -22,7 +22,7 @@ export const ContainerNavLink = styled(Link)`
   font-weight: 700;
   color: #699073;
 
-  padding: 5px;
+  padding: 6px;
 
   transition: color 200ms linear, font-size 200ms linear,
     box-shadow 200ms linear;
@@ -37,5 +37,6 @@ export const ContainerNavLink = styled(Link)`
     box-shadow: rgba(0, 0, 0, 0.75) 3px 4px 8px -1px;
     border-radius: 4px;
     background-color: #faeee9;
+    border-radius: 15px;
   }
 `;

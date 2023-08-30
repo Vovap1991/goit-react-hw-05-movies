@@ -1,4 +1,5 @@
 import HomePage from 'Pages/HomePage/HomePage';
+import Movies from 'Pages/Movies/Movies';
 import { Routes, Route } from 'react-router-dom';
 
 import { Container, ContainerNav, ContainerNavLink } from './App.styled';
@@ -14,16 +15,11 @@ export const App = () => {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/movies" element={<div>Movies</div>} />
-        <Route path="/movies/:movieId" element={<div>Selected Movie</div>} />
-        <Route
-          path="/movies/:movieId/cast"
-          element={<div>Selected Movie Cast</div>}
-        />
-        <Route
-          path="/movies/:movieId/reviews"
-          element={<div>Selected Movie Reviews</div>}
-        />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<div>Selected Movie</div>}>
+          <Route path="cast" element={<div>Selected Movie Cast</div>} />
+          <Route path="reviews" element={<div>Selected Movie Reviews</div>} />
+        </Route>
       </Routes>
     </Container>
   );
