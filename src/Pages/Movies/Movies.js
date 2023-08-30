@@ -2,6 +2,7 @@ import { SearchBar } from 'components/SearchBar/SearchBar';
 import { FilmGallery } from 'Pages/FilmGallery/FilmGallery';
 import { fetchFilmByQuery } from 'components/service/service';
 import { useEffect, useState } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -9,9 +10,9 @@ const Movies = () => {
 
   const changeQuery = newQuery => {
     if (query === newQuery) {
-      return console.aller('!!!!!!!!!');
+      return toast.error('Please, Enter another request!');
     }
-    setQuery(newQuery);
+    setQuery(`${Date.now()}/${newQuery}`);
     setFilms([]);
   };
 
@@ -21,26 +22,28 @@ const Movies = () => {
     }
 
     async function getFilms() {
+      const normalizedQuery = query.slice(query.indexOf('/') + 1);
       try {
-        const films = await fetchFilmByQuery(query);
+        const films = await fetchFilmByQuery(normalizedQuery);
 
         if (films.length === 0) {
-          console.error(
+          toast.error(
             'No movies have been found according to your request. Please, try again!'
           );
         } else {
           setFilms(films);
         }
       } catch (error) {
-        console.error('An error occurred while fetching movies:', error);
+        toast.error('An error occurred while fetching movies:', error);
       }
     }
 
     getFilms();
-  }, [query]);
+  }, [query, films]);
 
   return (
     <div>
+      <Toaster />
       <div>
         <SearchBar onSubmit={changeQuery} />
       </div>
