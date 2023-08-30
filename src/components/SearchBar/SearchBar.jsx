@@ -12,7 +12,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 export const SearchBar = () => {
   const [query, setQuery] = useState('');
-  const [films, setFilms] = useState([]);
+  const [, setFilms] = useState([]);
 
   const changeQuery = newQuery => {
     if (query === newQuery) {
