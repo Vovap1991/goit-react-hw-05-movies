@@ -1,5 +1,5 @@
 import { SearchBar } from 'components/SearchBar/SearchBar';
-import { FilmGallery } from 'Pages/FilmGallery/FilmGallery';
+import { FilmGallery } from 'components/FilmGallery/FilmGallery';
 import { fetchFilmByQuery } from 'components/service/service';
 import { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
