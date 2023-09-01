@@ -1,5 +1,7 @@
+import Cast from 'components/Cast/Cast';
 import HomePage from 'Pages/HomePage/HomePage';
 import Movies from 'Pages/Movies/Movies';
+import Reviews from 'components/Reviews/Reviews';
 import SingleMoviePage from 'Pages/SingleMoviePage/SingleMoviePage';
 import { Routes, Route } from 'react-router-dom';
 
@@ -18,8 +20,8 @@ export const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:movieId" element={<SingleMoviePage />}>
-          <Route path="cast" element={<div>Selected Movie Cast</div>} />
-          <Route path="reviews" element={<div>Selected Movie Reviews</div>} />
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
       </Routes>
     </Container>
