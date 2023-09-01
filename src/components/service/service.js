@@ -56,3 +56,16 @@ export const fetchCastById = async id => {
     );
   }
 };
+
+export const fetchReviewById = async id => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    toast.error(
+      `Sorry! We couldn't find any information about this film! Please, try again later!`
+    );
+  }
+};
