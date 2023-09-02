@@ -3,16 +3,20 @@ import { FilmGallery } from 'components/FilmGallery/FilmGallery';
 import { fetchFilmByQuery } from 'components/service/service';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
+  const location = useLocation();
+  console.log(location);
+  const [searchParams, setsearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
 
   const changeQuery = newQuery => {
     if (query === newQuery) {
       return toast.error('Please, Enter another request!');
     }
-    setQuery(`${Date.now()}/${newQuery}`);
+    setsearchParams({ query: newQuery });
     setFilms([]);
   };
 
@@ -22,9 +26,8 @@ const Movies = () => {
     }
 
     async function getFilms() {
-      const normalizedQuery = query.slice(query.indexOf('/') + 1);
       try {
-        const films = await fetchFilmByQuery(normalizedQuery);
+        const films = await fetchFilmByQuery(query);
 
         if (films.length === 0) {
           toast.error(
