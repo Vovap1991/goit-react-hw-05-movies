@@ -4,26 +4,19 @@ import Movies from 'Pages/Movies/Movies';
 import Reviews from 'components/Reviews/Reviews';
 import SingleMoviePage from 'Pages/SingleMoviePage/SingleMoviePage';
 import { Routes, Route } from 'react-router-dom';
-
-import { Container, ContainerNav, ContainerNavLink } from './App.styled';
+import { Layout } from 'components/Layout/Layout';
 
 export const App = () => {
   return (
-    <Container>
-      <ContainerNav>
-        <ContainerNavLink to="/">Home</ContainerNavLink>
-        <ContainerNavLink to="/movies">Movies</ContainerNavLink>
-      </ContainerNav>
-      <hr />
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<SingleMoviePage />}>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="movies/:movieId" element={<SingleMoviePage />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-      </Routes>
-    </Container>
+      </Route>
+    </Routes>
   );
 };
