@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchFilmById } from '../../components/service/service';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import {
   SingleFilmDataContainer,
   FilmWrapper,
@@ -111,7 +111,6 @@ const SingleMoviePage = () => {
         {showCast && <Cast movieId={movieId} />}
         {showReviews && <Reviews movieId={movieId} />}
       </div>
-      <Toaster />
     </div>
   );
 };

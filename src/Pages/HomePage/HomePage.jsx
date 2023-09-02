@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { fetchPopularFIlms } from '../../components/service/service';
-import { Toaster } from 'react-hot-toast';
 import {
   FilmList,
   FilmLink,
@@ -22,7 +21,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <Toaster />
       <h1>Trending Today</h1>
       <FilmList>
         {films.map(({ id, title, poster_path }) => (

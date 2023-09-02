@@ -2,7 +2,7 @@ import { SearchBar } from 'components/SearchBar/SearchBar';
 import { FilmGallery } from 'components/FilmGallery/FilmGallery';
 import { fetchFilmByQuery } from 'components/service/service';
 import { useEffect, useState } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -43,7 +43,6 @@ const Movies = () => {
 
   return (
     <div>
-      <Toaster />
       <div>
         <SearchBar onSubmit={changeQuery} />
       </div>
