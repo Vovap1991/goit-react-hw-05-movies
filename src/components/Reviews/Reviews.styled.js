@@ -46,3 +46,11 @@ export const ReviewsItemText = styled.p`
   font-size: 15px;
   margin: 0;
 `;
+
+export const NoReviewsMessage = styled.p`
+  font-size: 20px;
+  color: red;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+`;

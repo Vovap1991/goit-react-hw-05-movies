@@ -11,6 +11,7 @@ import {
   ReviewsItem,
   ReviewsItemTitle,
   ReviewsItemText,
+  NoReviewsMessage,
 } from './Reviews.styled';
 
 const Reviews = () => {
@@ -35,6 +36,15 @@ const Reviews = () => {
     };
     getReviews();
   }, [movieId, error]);
+
+  if (reviews.length === 0) {
+    return (
+      <div>
+        <ReviewsTitle>Reviews</ReviewsTitle>
+        <NoReviewsMessage>No reviews have been added yet!</NoReviewsMessage>
+      </div>
+    );
+  }
 
   return (
     <ReviewsContainer>
