@@ -73,3 +73,29 @@ export const CastReviewsLink = styled(Link)`
     background-color: #659493;
   }
 `;
+
+export const BackButton = styled(Link)`
+  margin-bottom: 30px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  width: 150px;
+  height: 40px;
+  color: #000000;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: #afc7b1;
+  transition: box-shadow 200ms linear, background-color 200ms linear;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    background-color: #ffc0cb;
+  }
+`;

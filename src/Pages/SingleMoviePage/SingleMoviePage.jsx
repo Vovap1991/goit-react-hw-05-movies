@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { fetchFilmById } from '../../components/service/service';
+import { useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import {
   SingleFilmDataContainer,
@@ -12,7 +11,9 @@ import {
   CastReviewsContainer,
   AddInfoTitle,
   CastReviewsLink,
+  BackButton,
 } from './SingleMoviePage.styled';
+import { fetchFilmById } from '../../components/service/service';
 
 import { defaultImg } from '../../components/service/service';
 import Reviews from 'components/Reviews/Reviews';
@@ -23,6 +24,7 @@ const SingleMoviePage = () => {
   const [error, setError] = useState(null);
   const [showCast, setShowCast] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
+  const location = useLocation();
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -42,9 +44,11 @@ const SingleMoviePage = () => {
     getFilm();
   }, [movieId, error]);
 
+  const backLink = location.state?.from ?? '/';
+
   return (
     <div>
-      <Link to="/movies">Go back</Link>
+      <BackButton to={backLink}>Go back</BackButton>
       <div>
         <SingleFilmDataContainer>
           <FilmWrapper>

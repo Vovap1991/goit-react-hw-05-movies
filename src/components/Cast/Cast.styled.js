@@ -63,3 +63,11 @@ export const CastItemCharacterName = styled.p`
   font-size: 20px;
   margin: 10px 0;
 `;
+
+export const NoCastMessage = styled.p`
+  font-size: 20px;
+  color: red;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+`;

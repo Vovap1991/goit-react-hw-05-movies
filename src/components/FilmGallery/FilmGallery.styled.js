@@ -1,6 +1,29 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const ResetButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  width: 150px;
+  height: 40px;
+  color: #0a0909;
+  border-radius: 10px;
+  background-color: white;
+  transition: box-shadow 200ms linear, background-color 200ms linear;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    background-color: #faf5f5;
+  }
+`;
+
 export const FilmGalleryList = styled.ul`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -58,4 +81,11 @@ export const FilmGalleryTitle = styled.h2`
   &:hover {
     color: #ff4500;
   }
+`;
+
+export const ResetButtonSpan = styled.span`
+  padding: 10px;
+  font-size: 18px;
+  color: black;
+  font-weight: 500;
 `;

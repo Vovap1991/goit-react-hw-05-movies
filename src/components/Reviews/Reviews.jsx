@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchReviewById } from '../service/service';
 import { toast } from 'react-hot-toast';
-
+import { Loader } from '../Loader/Loader';
 import {
   ReviewsContainer,
   ReviewsTitle,
@@ -13,14 +12,17 @@ import {
   ReviewsItemText,
   NoReviewsMessage,
 } from './Reviews.styled';
+import { fetchReviewById } from '../service/service';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getReviews = async () => {
+      setLoading(true);
       try {
         const reviewsData = await fetchReviewById(movieId);
         const reviews = reviewsData.results;
@@ -33,6 +35,7 @@ const Reviews = () => {
         toast.error('Something went wrong. Please, try again later!');
         setError(error);
       }
+      setLoading(false);
     };
     getReviews();
   }, [movieId, error]);
@@ -49,18 +52,22 @@ const Reviews = () => {
   return (
     <ReviewsContainer>
       <ReviewsTitle>Reviews</ReviewsTitle>
-      <ReviewsList>
-        {reviews.map(review => (
-          <ReviewsItem key={review.id}>
-            <ReviewsItemTitle>
-              {review.author ? review.author : 'unknown'}
-            </ReviewsItemTitle>
-            <ReviewsItemText>
-              {review.content ? review.content : 'unavailable'}
-            </ReviewsItemText>
-          </ReviewsItem>
-        ))}
-      </ReviewsList>
+      {loading ? (
+        <Loader />
+      ) : (
+        <ReviewsList>
+          {reviews.map(review => (
+            <ReviewsItem key={review.id}>
+              <ReviewsItemTitle>
+                {review.author ? review.author : 'unknown'}
+              </ReviewsItemTitle>
+              <ReviewsItemText>
+                {review.content ? review.content : 'unavailable'}
+              </ReviewsItemText>
+            </ReviewsItem>
+          ))}
+        </ReviewsList>
+      )}
     </ReviewsContainer>
   );
 };

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { fetchPopularFIlms } from '../../components/service/service';
 import {
   FilmList,
   FilmLink,
@@ -7,6 +6,7 @@ import {
   FilmImg,
   FilmTitle,
 } from './HomePage.styled';
+import { fetchPopularFIlms } from '../../components/service/service';
 
 const HomePage = () => {
   const [films, setFilms] = useState([]);

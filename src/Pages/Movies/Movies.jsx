@@ -1,14 +1,12 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useSearchParams } from 'react-router-dom';
 import { SearchBar } from 'components/SearchBar/SearchBar';
 import { FilmGallery } from 'components/FilmGallery/FilmGallery';
 import { fetchFilmByQuery } from 'components/service/service';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [films, setFilms] = useState([]);
-  const location = useLocation();
-  console.log(location);
   const [searchParams, setsearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -20,8 +18,13 @@ const Movies = () => {
     setFilms([]);
   };
 
+  const ResetQuery = () => {
+    setsearchParams({ query: '' });
+  };
+
   useEffect(() => {
     if (query === '') {
+      setFilms([]);
       return;
     }
 
@@ -42,7 +45,7 @@ const Movies = () => {
     }
 
     getFilms();
-  }, [query, films]);
+  }, [query]);
 
   return (
     <div>
@@ -51,7 +54,7 @@ const Movies = () => {
       </div>
 
       <div>
-        <FilmGallery films={films} />
+        <FilmGallery films={films} onClick={ResetQuery} />
       </div>
     </div>
   );
